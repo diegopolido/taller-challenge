@@ -23,6 +23,15 @@
   </head>
 
   <body>
+    <nav>
+      <%= link_to "Reserve Books", books_reserve_path %>
+      <%= link_to "Borrowed Books", books_borrows_path %>
+    </nav>
+
+    <% flash.each do |type, message| %>
+      <p style="color: <%= type == 'alert' ? 'red' : 'green' %>"><%= message %></p>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

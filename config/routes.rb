@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  get "/books/:id/reserve", to: "borrow#create"
-  get "borrow/return"
+  get "books/reserve", to: "borrows#new"
+  get "books/borrows", to: "borrows#index"
+  post "/books/:book_id/reserve", to: "borrows#create"
   resources :users
   resources :books
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

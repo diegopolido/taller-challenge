@@ -1,0 +1,32 @@
+<% content_for :title, "Borrows" %>
+
+<p style="color: green"><%= notice %></p>
+
+<h1>Borrows</h1>
+
+<div id="borrows">
+  <table>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Book</th>
+        <th>Borrowed at</th>
+        <th>Due date</th>
+        <th>Returned at</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @borrows.each do |borrow| %>
+        <tr>
+          <td><%= borrow.user.email %></td>
+          <td><%= borrow.book.title %></td>
+          <td><%= borrow.borrowed_at&.strftime("%d/%m/%Y") %></td>
+          <td><%= borrow.due_date&.strftime("%d/%m/%Y") %></td>
+          <td><%= borrow.returned_at ? borrow.returned_at.strftime("%d/%m/%Y") : "Active" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= link_to "Reserve a book", books_reserve_path %>

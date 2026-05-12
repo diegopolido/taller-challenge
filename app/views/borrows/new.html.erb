@@ -1,0 +1,25 @@
+
+<h1>Reserve book</h1>
+
+<% if @books.any? %>
+  <% @books.each do |book| %>
+    <div style="margin-bottom: 2rem; border: 1px solid #ccc; padding: 1rem;">
+      <strong><%= book.title %></strong> — <%= book.author %> (<%= book.genre %>)
+      <br>
+      Status: <%= book.status %>
+
+      <% if book.status == 'available' %>
+        <br><br>
+        <%= form_with url: "/books/#{book.id}/reserve", method: :post do |f| %>
+          <%= f.label :email, "User e-mail" %>
+          <%= f.email_field :email, placeholder: "user@books.com", required: true %>
+          <%= f.submit "Reserve" %>
+        <% end %>
+      <% else %>
+        <br><em>Unavailable</em>        
+      <% end %>
+    </div>
+  <% end %>
+<% else %>
+  <p>No books records</p>
+<% end %>

@@ -27,7 +27,7 @@ class BorrowsController < ApplicationController
       format.json { render json: borrow, status: :created }
     end
   rescue BorrowBookService::Error => e
-    respond_with_error(e, status)
+    respond_with_error(e.message, :unprocessable_entity)
   end
 
   private
